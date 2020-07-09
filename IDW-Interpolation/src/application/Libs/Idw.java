@@ -21,10 +21,10 @@ public class Idw {
 	//Max und Min - Werte aus den eingelesenen Daten ermitteln
 	private double maxCoordX = -1;
 	private double maxCoordY = -1;
-	private double minCoordX = -1;
-	private double minCoordY = -1;
 	private double maxWeight = -1;
-	private double minWeight = -1;
+	private double minCoordX = Double.MAX_VALUE;
+	private double minCoordY = Double.MAX_VALUE;
+	private double minWeight = Double.MAX_VALUE;
 	
 	//Index Marken für Array handhabung
 	private static int INDEX_X = 0;
@@ -147,6 +147,7 @@ public class Idw {
 		int index = 0;
 		for(double[] point : dataPoints) {
 			distanzes[index] = Point2D.distance(point[INDEX_X], point[INDEX_Y], x, y);
+			index++;
 		}
 	}
 	
@@ -162,8 +163,7 @@ public class Idw {
 			sumWeightingDividedByDistanz += (dataPoints[i][INDEX_WEIGHT] / distanzes[i]);
 			sumOneDividedByWeighting += (1 / distanzes[i]);
 		}
-		
 		return sumWeightingDividedByDistanz / sumOneDividedByWeighting;
 	}
-
+	
 }

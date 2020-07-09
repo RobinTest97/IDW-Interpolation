@@ -25,6 +25,7 @@ public class IdwImage extends Idw {
 		this.imageOffset = imageOffset;
 		this.rgbColors = rgbColors;
 		calculateImageSizing();
+		createBufferedImageWithPreferences();
 		calculateWeightingForAllPoints();
 		setIdwPixelColors();
 	}
@@ -46,10 +47,12 @@ public class IdwImage extends Idw {
 	 * @return gibt alle weightings zurück
 	 */
 	private void calculateWeightingForAllPoints(){
+		System.out.println(imageWidth);
+		System.out.println(imageHeight);
 		weightings = new double[imageWidth][imageHeight];
 		
 		for(int x = 0; x < imageWidth; x++){
-			for(int y = 0; y < imageHeight; x++) {
+			for(int y = 0; y < imageHeight; y++) {
 				double weightAtPoint = getWeightOfCoord(x + getMinCoordX()+imageOffset
 									, y + getMinCoordY());
 				weightings[x][y] = weightAtPoint;
@@ -57,16 +60,23 @@ public class IdwImage extends Idw {
 		}
 	}
 	
+	/**
+	 * bereitet das BufferedImage mit den berechneten Werten vor
+	 */
+	private void createBufferedImageWithPreferences() {
+		idwImage = new BufferedImage(imageWidth, imageHeight, BufferedImage.TYPE_INT_ARGB);
+	}
+	
 	
 	/**
-	 * TODO: Beschriftung
-	 * 
+	 * berechnet die Bildgröße. Hier wird wirklich nur vom kleinsten xy bis zum größten xy 
+	 * aufgespannt (sonst ist das Bild zu groß für den Java Heap und es macht auch keinen Sinn)
 	 * 
 	 * @param idw
 	 * @param imageOffset
 	 * @return
 	 */
-	private void calculateImageSizing() {		
+	private void calculateImageSizing() {	
 		imageHeight = (int) (getMaxCoordX() - getMinCoordX() + (imageOffset*2));
 		imageWidth  = (int) (getMaxCoordY() - getMinCoordY() + (imageOffset*2));
 	}
@@ -79,9 +89,9 @@ public class IdwImage extends Idw {
 		double stepSize = ((getMaxWeight() - getMinWeight())/ rgbColors.length);
 		
 		for(int x = 0; x < imageWidth; x++){
-			for(int y = 0; y < imageHeight; x++) {		
-					int colorIndex = (int)((weightings[x][y] - getMinWeight()) / stepSize);
-					idwImage.setRGB(x, y, correctColorIndices(colorIndex));
+			for(int y = 0; y < imageHeight; y++) {	
+					int colorIndex = (int)((weightings[x][y] - getMinWeight()) / stepSize);				
+					idwImage.setRGB(x, y, rgbColors[correctColorIndices(colorIndex)]);
 			}
 		}	
 		
