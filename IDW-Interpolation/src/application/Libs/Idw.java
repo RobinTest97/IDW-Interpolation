@@ -1,4 +1,3 @@
-
 package application.Libs;
 
 import java.awt.geom.Point2D;
@@ -81,7 +80,7 @@ public class Idw {
 	/**
 	 * ermittelt die Max und Min Werte aus den eingelesenen Daten
 	 */
-	public void calculateMaxAndMinCoordAndWeight() {
+	private void calculateMaxAndMinCoordAndWeight() {
 		
 		for(double[] point : dataPoints){
 			
@@ -111,7 +110,7 @@ public class Idw {
 	 * @param y - Koordinate
 	 * @return Gewichtung des Koordinatenpunkts
 	 */
-	public double getWeightOfCoord(double x, double y) {
+	protected double getWeightOfCoord(double x, double y) {
 		int coordIndex = lookupPointInArray(x, y);
 		if( coordIndex != -1)
 			return dataPoints[coordIndex][INDEX_WEIGHT];
