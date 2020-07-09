@@ -15,10 +15,12 @@ import java.util.Arrays;
 
 public class Idw {
 	
+	//Basis Arrays
 	private double[][] dataPoints;
 	private double[] distanzes;
 	
-	//Max und Min - Werte aus den eingelesenen Daten ermitteln
+	//Max und Min - Werte aus den eingelesenen Daten ermitteln Default
+	//Values gesetzt
 	private double maxCoordX = -1;
 	private double maxCoordY = -1;
 	private double maxWeight = -1;

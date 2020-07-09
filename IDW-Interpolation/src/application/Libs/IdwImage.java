@@ -23,6 +23,8 @@ public class IdwImage extends Idw {
 	public IdwImage(double[][] dataPoints, int imageOffset, int[] rgbColors) {
 		super(dataPoints);
 		this.imageOffset = imageOffset;
+		if(imageOffset < 0)
+			imageOffset = 0;
 		this.rgbColors = rgbColors;
 		calculateImageSizing();
 		createBufferedImageWithPreferences();
@@ -33,6 +35,17 @@ public class IdwImage extends Idw {
 	
 	public BufferedImage getIdwImage() {
 		return idwImage;
+	}
+	
+	/**
+	 * gibt die berechnete Gewichtung des spezifischen Punkts zurück
+	 * 
+	 * @param x
+	 * @param y
+	 * @return gewichtung des übergebenen coord Punkts
+	 */
+	public double getSpecificWeighting(int x, int y) {
+		return weightings[x][y];
 	}
 	
 	       
@@ -77,8 +90,8 @@ public class IdwImage extends Idw {
 	 * @return
 	 */
 	private void calculateImageSizing() {	
-		imageHeight = (int) (getMaxCoordX() - getMinCoordX() + (imageOffset*2));
-		imageWidth  = (int) (getMaxCoordY() - getMinCoordY() + (imageOffset*2));
+		imageHeight = (int) (getMaxCoordX() - getMinCoordX() + imageOffset);
+		imageWidth  = (int) (getMaxCoordY() - getMinCoordY() + imageOffset);
 	}
 	
 	/**
