@@ -28,8 +28,8 @@ public class Idw {
 	
 	//Index Marken für Array handhabung
 	private static int INDEX_X = 0;
-	private static int INDEX_Y = 0;
-	private static int INDEX_WEIGHT = 0;
+	private static int INDEX_Y = 1;
+	private static int INDEX_WEIGHT = 2;
 	
 	/**
 	 * Setzen der DataPoints und aufspannen des distanzes Arrays
@@ -66,6 +66,15 @@ public class Idw {
 	public double getMinCoordY() {
 		return minCoordY;
 	}
+	
+	public double getMaxWeight() {
+		return maxWeight;
+	}
+	
+	public double getMinWeight() {
+		return minWeight;
+	}
+	
 	
 	/**
 	 * ermittelt die Max und Min Werte aus den eingelesenen Daten
