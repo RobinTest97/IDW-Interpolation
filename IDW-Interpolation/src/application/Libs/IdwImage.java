@@ -60,8 +60,6 @@ public class IdwImage extends Idw {
 	 * @return gibt alle weightings zurück
 	 */
 	private void calculateWeightingForAllPoints(){
-		System.out.println(imageWidth);
-		System.out.println(imageHeight);
 		weightings = new double[imageWidth][imageHeight];
 		
 		for(int x = 0; x < imageWidth; x++){
@@ -103,8 +101,8 @@ public class IdwImage extends Idw {
 		
 		for(int x = 0; x < imageWidth; x++){
 			for(int y = 0; y < imageHeight; y++) {	
-					int colorIndex = (int)((weightings[x][y] - getMinWeight()) / stepSize);				
-					idwImage.setRGB(x, y, rgbColors[correctColorIndices(colorIndex)]);
+				int colorIndex = (int)((weightings[x][y] - getMinWeight()) / stepSize);				
+				idwImage.setRGB(x, y, rgbColors[correctColorIndices(colorIndex)]);
 			}
 		}	
 		
