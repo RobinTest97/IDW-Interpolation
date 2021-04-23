@@ -1,6 +1,6 @@
 # IDW-Interpolation - Projekt in Geoinformationssysteme
 
-Interpoliert Punkte, um eine Art Heatmap der Koordinaten zu erzeugen. Genauere Infos zu der herangehensweise findet man im Library Code.
+Diese Applikation interpoliert Punktdaten, um eine Art Heatmap der Koordinaten zu erzeugen. Genauere Infos zu der herangehensweise findet man im Library Code.
 Kann aktuell nur die Formate der Test-Dateien einlesen, welche sich in X-Koordinaten, Y-Koordinaten und Messwerte aufspalten.
 
 Test-Bild-1
